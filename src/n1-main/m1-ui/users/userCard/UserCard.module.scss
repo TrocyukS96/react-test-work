@@ -1,0 +1,51 @@
+.userCard{
+  width: 300px;
+
+  text-align: center;
+
+  display: flex;
+  //justify-content: center;
+  //align-items: center;
+  flex-direction: column;
+
+  border:2px solid black;
+
+  .userLink{
+    text-decoration: none;
+  }
+  .userImg{
+    width: 200px;
+  }
+  .userName{
+    padding: 0;
+    margin: 0;
+  }
+
+  .userText{
+    margin-bottom: 18px;
+  }
+
+  .buttonsBlock{
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    & button{
+      border-style: none;
+
+      line-height: 1.8;
+
+      transition: all .3s ease;
+
+      border-radius: 10px;
+
+      &:active{
+        background-color: blueviolet;
+      }
+    }
+
+  }
+
+
+}
