@@ -2,8 +2,9 @@ import {Dispatch} from "redux";
 import { ThunkAction } from "redux-thunk/es/types";
 import { usersApi } from "../../m3-dal/usersAPI";
 import { RootStateType } from "../store";
+import {setStatusAC, SetStatusAT} from "./userReducer";
 
-export const initialState: UsersPageType = {
+const initialState: UsersPageType = {
     users: [],
     pageSize: 5,  // столько юзеров будет на 1 страничке
     totalCount: 40,  // всего юзеров на странице
@@ -58,16 +59,18 @@ export const setUserIdAC = (userId: string) => ({type: 'USERS/SET-USER-ID', user
 //thunks
 export const getUsersThunk = (currentPage: number, pageSize?: number):ThunkType => {
     return async (dispatch: Dispatch) => {
+        dispatch(setStatusAC('loading'))
         const data = await usersApi.getUsers(currentPage, pageSize)
-        console.log(data)
         dispatch(setUsersAC(data.data))
-        // dispatch(setTotalUsersCountAC(data.data.totalCount))
+        dispatch(setStatusAC('succeeded'))
     }
 }
 export const deleteUsersThunk = (userId: string):ThunkType=> async (dispatch, getState) => {
     const currentPage = getState().users.currentPage
+    dispatch(setStatusAC('loading'))
     await usersApi.deleteUsers(userId)
     dispatch(getUsersThunk(currentPage))
+    dispatch(setStatusAC('succeeded'))
 }
 
 
@@ -80,6 +83,7 @@ type ActionTypes =
     | ReturnType<typeof setValueSearchAC>
     | ReturnType<typeof sortUsersAC>
     | ReturnType<typeof setUserIdAC>
+    | SetStatusAT
 
 
 

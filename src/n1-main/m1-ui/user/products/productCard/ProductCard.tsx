@@ -1,6 +1,9 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {useDispatch} from "react-redux";
 import {deleteProductsThunk} from "../../../../m2-bll/reducers/userReducer";
+import s from "../../../users/Users.module.scss";
+import Modal from "../../../../../n2-features/modal/Modal";
+import {useFormik} from "formik";
 
 type ProductCardPropsType ={
     productName:string
@@ -14,7 +17,13 @@ export const ProductCard:FC<ProductCardPropsType>=({productName,productId,userId
     const deleteProductHandler = ()=>{
         dispatch(deleteProductsThunk(userId,productId))
     }
+
+
+
     return (
-        <div>Product: {productName} <button onClick={deleteProductHandler}>X</button></div>
+        <div>
+            <div>Product: {productName} <button onClick={deleteProductHandler}>X</button></div>
+
+        </div>
     )
 }
