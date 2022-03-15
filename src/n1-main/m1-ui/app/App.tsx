@@ -12,12 +12,10 @@ export const App = () => {
         <div className={s.appWrapper}>
             <Header/>
             <div className={s.main}>
-                {/*<div className={s.pagination}>pagination</div>*/}
-                {/*<div className={s.filtration}>filtration</div>*/}
                 <Routes>
                     <Route path={`/users/:userId`}
                            element={<User/>}/>
-                    <Route path={`/users`}
+                    <Route path={`/users/*`}
                            element={<Users/>}/>
                 </Routes>
 

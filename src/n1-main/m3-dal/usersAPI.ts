@@ -14,7 +14,13 @@ export const usersApi = {
 export const userApi = {
     getUser(userId:string) {
         return instance.get(`users/${userId}`)
-    }
+    },
+    getProducts(userId:string) {
+        return instance.get(`products/${userId}`)
+    },
+    deleteProducts(userId:string, productId:string) {
+        return instance.delete(`products/${productId}`)
+    },
 
 }
 
