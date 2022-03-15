@@ -7,7 +7,7 @@ export const SideBar =()=>{
     return (
         <nav className={s.sidebar}>
             <ul className={s.sidebarList}>
-                <li className={s.sidebarItem}><NavLink className={s.sidebarLink} activeClassName={s.activeLink} to="/users">Users</NavLink> </li>
+                <li className={s.sidebarItem}><NavLink className={s.sidebarLink} to="/users">Users</NavLink> </li>
             </ul>
         </nav >
     )

@@ -1,13 +1,14 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
-import thunk, { ThunkAction } from 'redux-thunk';
+import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
+import thunk from 'redux-thunk';
+import {usersReducer} from "./reducers/UsersReducer";
 
 
-
-const rootReducer = combineReducers({
-
+const reducers = combineReducers({
+    users:usersReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
 
-export type RootStateType = ReturnType<typeof rootReducer>
-export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown,any>
+export type RootStateType = ReturnType<typeof reducers>
+export const store: Store = createStore(reducers, applyMiddleware(thunk));
+
+// export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown,any>
