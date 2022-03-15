@@ -2,33 +2,14 @@
 .appWrapper{
   box-sizing: border-box;
 
-  display: grid;
-  grid-template-columns: 15% 85%;
-  grid-template-rows: 12% 88%;
-
-  grid-template-areas:
-    "header header"
-    "sidebar main"
-;
-
-  justify-content: center;
-
-  //background-image: url('./assets/images/main/bg.jpg');
-  background-color: rgba(68, 65, 65, 0.42);
-
-  background-repeat: no-repeat;
-
-  background-position: center;
-
-  background-size: cover;
+  min-height: 100vh;
+  background-color: #4584aeba;
 
 .main{
-  grid-area: main;
-  background-color:greenyellow;
-  padding: 10px 0 0 20px;
-
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
+  .container{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  padding: 10px 0 0 0px;
 }
 }

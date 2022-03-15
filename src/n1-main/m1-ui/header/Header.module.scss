@@ -1,12 +1,65 @@
-.header{
-  grid-area: header;
+
+.header {
+  height: 80px;
+  background-color:#4bcbd4;
+
+  padding-top: 20px;
 
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
 
-  text-align: center;
+    .inner {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
 
-  background-color: rgba(255, 0, 0, 0.38);
+      text-align: center;
+
+      text-decoration: none;
+
+
+      & img {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .users {
+
+        width: 90px;
+        height: 40px;
+
+        display: flex;
+
+        align-items: center;
+
+        background-color: #fff;
+
+        border-radius: 10px;
+
+        transition: all 0.3s ease-in;
+
+        text-align: center;
+
+        .usersLink {
+          padding-left: 10px;
+          font-size: 20px;
+
+          color: rgba(24, 83, 107, 0.63);
+          text-transform: uppercase;
+
+
+          text-decoration: none;
+        }
+      }
+
+    }
+  }
 }

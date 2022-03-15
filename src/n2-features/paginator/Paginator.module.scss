@@ -1,6 +1,6 @@
 .paginator {
   max-width: 100%;
-  margin: 2vh 0;
+  margin: 2vh 0; color: #105093;
 
   .paginatorContainer {
     display: flex;
@@ -45,11 +45,11 @@
         font-weight: bold;
         border-color: #9A91C8;
         background-color: #ECECF9;
-        color: #9A91C8;
+        color: #ffffff;
       }
 
       .pageNumber:hover {
-        background-color: #c8c5d9;
+        background-color: #ffffff;
         color: #21268F;
       }
     }
@@ -69,6 +69,14 @@
         justify-content: space-between;
         align-items: center;
         min-width: 180px;
+
+        font-size: 17px;
+
+        font-family: Arial;
+
+        select{
+          margin: 5px;
+        }
       }
 
       select {

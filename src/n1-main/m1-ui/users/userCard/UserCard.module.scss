@@ -1,37 +1,62 @@
-.userCard{
-  width: 300px;
+.userCard {
+  max-width: 250px;
+  height: 180px;
+
+  padding: 5px;
 
   text-align: center;
 
   display: flex;
-  //justify-content: center;
-  //align-items: center;
   flex-direction: column;
+  background-color: #c65277;
 
-  border:2px solid black;
+  font-size: 18px;
 
-  .userLink{
+  color: #eff6d5;
+
+  .userLink {
     text-decoration: none;
+
+    color: inherit;
   }
-  .userImg{
+
+  .userImg {
     width: 200px;
   }
-  .userName{
-    padding: 0;
+
+  .userName {
+    padding-top: 10px;
     margin: 0;
   }
 
-  .userText{
+  .letter {
+    display: block;
+
+    width: 40px;
+    height: 40px;
+
+    margin:10px auto;
+
+    border-radius: 50%;
+
+    background-color: #eff6d5;
+
+    color: #2c2b34;
+
+    line-height: 2.1;
+  }
+
+  .userText {
     margin-bottom: 18px;
   }
 
-  .buttonsBlock{
+  .buttonsBlock {
     margin-bottom: 10px;
     display: flex;
     gap: 10px;
     justify-content: center;
 
-    & button{
+    & button {
       border-style: none;
 
       line-height: 1.8;
@@ -40,13 +65,17 @@
 
       border-radius: 10px;
 
-      &:active{
-        background-color: blueviolet;
+      &:active {
+        background-color: rgba(99, 241, 235, 0.63);
+      }
+      &:hover{
+        background-color: rgba(43, 226, 183, 0.19);
       }
     }
 
   }
-  .modalInner{
+
+  .modalInner {
     width: 200px;
     height: 300px;
 
@@ -58,11 +87,13 @@
 
     position: relative;
 
-    .content{
-      h5{
+    .content {
+      color:black;
+      h5 {
         padding: 5px;
       }
-      .cancel{
+
+      .cancel {
         position: absolute;
         top: 3px;
         right: 3px;
@@ -77,12 +108,13 @@
 
         transition: all .3s ease;
 
-        &:active{
+        &:active {
           background-color: #c77a7a;
-          color:#e5e5e5;
+          color: #e5e5e5;
         }
       }
-      .modalForm{
+
+      .modalForm {
         padding: 5px;
       }
     }

@@ -1,20 +1,40 @@
 
 .user {
-  height: auto;
-  .inner {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
 
-    display: flex;
+    .inner {
+      margin: 0 auto;
 
-    justify-content: center;
+      display: flex;
 
-    align-items: center;
-    flex-direction: column;
+      justify-content: center;
 
-    max-width: 300px;
+      align-items: center;
+      flex-direction: column;
 
+      max-width: 300px;
+      background-color: #c77a7a;
 
-    background-color: rgba(28, 119, 201, 0.48);
+      color: #eff6d5;
 
+      .letterBlock {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+
+        background-color: #e3dfe5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0 0 0;
+
+        span{
+          color: #2c2b34;
+        }
+      }
+    }
   }
-
 }

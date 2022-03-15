@@ -64,7 +64,7 @@ export const UserCard: FC<UserCardPropsType> = (
         <div className={s.userCard}>
             <NavLink className={s.userLink} to={`/users/${userId}`} onClick={setUserIdHandler}>
                 <p className={s.userName}>{name}</p>
-                <img className={s.userImg} src={avatar} alt="avatar"/>
+                    <span className={s.letter}>{name[0].toLocaleUpperCase()}</span>
             </NavLink>
 
             <div className={s.userText}>

@@ -74,14 +74,15 @@ export const Paginator = () => {
                         </button>}
                 </div>
                 <div className={s.selectWrapper}>
-                    Show
+                    Show <span> </span>
+
                     <select name="pagesCountSelect"
                             id="pagesCountSelect"
                             value={portionSize}
                             onChange={onPagesCountChangeHandler}>
                         {pagesOptionsTags}
                     </select>
-                    Cards per page
+                    <span> </span>Cards per page
                 </div>
             </div>
         </div>
