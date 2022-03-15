@@ -13,10 +13,15 @@ export const App = () => {
             <div className={s.main}>
                 <div className={s.container}>
                     <Routes>
-                        <Route path={`/users/*`}
+                        <Route path={`/`}
+                               element={<Users/>}/>
+                        <Route path={`/users`}
                                element={<Users/>}/>
                         <Route path={`/users/:userId`}
                                element={<User/>}/>
+                        {/*<Route path="*">*/}
+                        {/*    <Users/>*/}
+                        {/*</Route>*/}
                     </Routes>
                 </div>
 

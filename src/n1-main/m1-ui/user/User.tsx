@@ -42,7 +42,10 @@ export const User = () => {
                     <p className={s.name}>Name:{user.name}</p>
                     <p className={s.letterBlock}><span>{user.name[0]}</span></p>
                     <p className={s.age}>Age:{user.age}</p>
-                    <Products products={products}/>
+                    {products.length>0 &&
+                        <Products products={products}/>
+                    }
+
                 </div>
 
             </div>
