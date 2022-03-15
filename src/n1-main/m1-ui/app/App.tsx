@@ -15,9 +15,9 @@ export const App = () => {
                 {/*<div className={s.pagination}>pagination</div>*/}
                 {/*<div className={s.filtration}>filtration</div>*/}
                 <Routes>
-                    <Route path={"/user"}
+                    <Route path={`/users/:userId`}
                            element={<User/>}/>
-                    <Route path={"/users"}
+                    <Route path={`/users`}
                            element={<Users/>}/>
                 </Routes>
 

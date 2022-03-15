@@ -2,13 +2,14 @@ import React, {useEffect} from "react";
 import {UserCard} from "./userCard/UserCard";
 import s from './Users.module.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {getUsersThunk, UserType} from "../../m2-bll/reducers/UsersReducer";
+import {getUsersThunk, setValueSearchAC, UserType} from "../../m2-bll/reducers/UsersReducer";
 import {RootStateType} from "../../m2-bll/store";
 import {Paginator} from "../../../n2-features/paginator/Paginator";
-
+import {Search} from "../../../n2-features/search/Search";
+import {useParams} from 'react-router';
 
 export const Users = () => {
-    debugger
+
     //hooks
     const dispatch = useDispatch();
     const pageSize = useSelector<RootStateType, number>(state=>state.users.pageSize)
@@ -20,12 +21,14 @@ export const Users = () => {
         dispatch(getUsersThunk(currentPage,pageSize))
     }, [])
 
+
+
     return (
         <div className={s.users}>
             <div className={s.logicBlock}>
                 <Paginator/>
-                <div className={s.filter}>
-                    filter
+                <div className={s.search}>
+                    <Search setValueSearchAC={setValueSearchAC} buttonText={'find'}/>
                 </div>
             </div>
 
@@ -38,6 +41,7 @@ export const Users = () => {
                             avatar={u.avatar}
                             name={u.name}
                             company={u.company}
+                            userId={u.id}
 
                         />
                     })

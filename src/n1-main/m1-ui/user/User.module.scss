@@ -1,0 +1,19 @@
+
+.user {
+  height: auto;
+  .inner {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+    flex-direction: column;
+
+    max-width: 300px;
+
+
+    background-color: rgba(28, 119, 201, 0.48);
+
+  }
+}

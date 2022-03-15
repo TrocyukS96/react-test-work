@@ -7,6 +7,14 @@ export const usersApi = {
     getUsers(currentPage: number, pageSize=5) {
         return instance.get(`users?page=${currentPage}&limit=${pageSize}`)
     },
+    deleteUsers(userId:string) {
+        return instance.delete(`users/${userId}`)
+    },
+}
+export const userApi = {
+    getUser(userId:string) {
+        return instance.get(`users/${userId}`)
+    }
+
 }
 
-// export 'as'

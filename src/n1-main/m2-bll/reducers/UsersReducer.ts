@@ -1,12 +1,15 @@
 import {Dispatch} from "redux";
+import { ThunkAction } from "redux-thunk/es/types";
 import { usersApi } from "../../m3-dal/usersAPI";
+import { RootStateType } from "../store";
 
 export const initialState: UsersPageType = {
     users: [],
     pageSize: 5,  // столько юзеров будет на 1 страничке
-    totalCount: 100,  // всего юзеров на странице
+    totalCount: 40,  // всего юзеров на странице
     currentPage: 1, // текущая страница
-    portionSize:5
+    portionSize:5,
+    userId:''
 }
 
 export const usersReducer = (state=initialState, action: ActionTypes) => {
@@ -32,6 +35,12 @@ export const usersReducer = (state=initialState, action: ActionTypes) => {
                 ...state, totalCount: action.usersCount
             }
         }
+        case 'USERS/SET-VALUE-SEARCH':
+            return {...state, users: state.users.filter(n=>n.name===action.value)}
+        case 'USERS/SORT-USERS':
+            return {...state, sortCards: action.value}
+        case 'USERS/SET-USER-ID':
+            return {...state, userId: action.userId}
         default:
             return state
     }
@@ -42,11 +51,12 @@ export const setUsersAC = (users: UserType[]) => ({type: 'USERS-SET-USERS', user
 export const setCurrentPageAC = (currentPage: number) => ({type: 'USERS-SET-CURRENT-PAGE', currentPage} as const)
 export const setTotalUsersCountAC = (usersCount: number) => ({type: 'USERS-SET-TOTAL-USERS-COUNT', usersCount} as const)
 export const setPortionSizeAC = (portionSize: number) => ({type: 'USERS-SET-PORTION-SIZE', portionSize} as const)
-
-
+export const setValueSearchAC = (value: string) => ({type: 'USERS/SET-VALUE-SEARCH', value} as const)
+export const sortUsersAC = (value: string) => ({type: 'USERS/SORT-USERS', value} as const)
+export const setUserIdAC = (userId: string) => ({type: 'USERS/SET-USER-ID', userId} as const)
 
 //thunks
-export const getUsersThunk = (currentPage: number, pageSize?: number) => {
+export const getUsersThunk = (currentPage: number, pageSize?: number):ThunkType => {
     return async (dispatch: Dispatch) => {
         const data = await usersApi.getUsers(currentPage, pageSize)
         console.log(data)
@@ -54,7 +64,11 @@ export const getUsersThunk = (currentPage: number, pageSize?: number) => {
         // dispatch(setTotalUsersCountAC(data.data.totalCount))
     }
 }
-
+export const deleteUsersThunk = (userId: string):ThunkType=> async (dispatch, getState) => {
+    const currentPage = getState().users.currentPage
+    await usersApi.deleteUsers(userId)
+    dispatch(getUsersThunk(currentPage))
+}
 
 
 //types
@@ -63,6 +77,9 @@ type ActionTypes =
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof setPortionSizeAC>
+    | ReturnType<typeof setValueSearchAC>
+    | ReturnType<typeof sortUsersAC>
+    | ReturnType<typeof setUserIdAC>
 
 
 
@@ -72,6 +89,7 @@ export type UsersPageType = {
     totalCount: number
     currentPage: number
     portionSize:number
+    userId:string
 }
 
 export type UserType = {
@@ -87,3 +105,5 @@ export type ProductType = {
     name: string
     userId: string
 }
+
+export type ThunkType = ThunkAction<any, RootStateType, {}, ActionTypes>

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import s from  './Paginator.module.scss';
+import s from './Paginator.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../n1-main/m2-bll/store";
 import {
@@ -13,26 +13,26 @@ import {
 export const Paginator = () => {
     const dispatch = useDispatch()
 
-    const usersState = useSelector<RootStateType, UsersPageType>(state=>state.users)
+    const usersState = useSelector<RootStateType, UsersPageType>(state => state.users)
 
-    const {totalCount,pageSize, portionSize, currentPage} = usersState
+    const {totalCount, pageSize, portionSize} = usersState
 
-    debugger
+
     let pageCount = Math.ceil(totalCount / pageSize)
     let pages = [];
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i)
     }
-    let [portionNumber, setPortionNumber]=useState(1)
-    let portionCount = Math.ceil(pageCount/portionSize)
-    let leftPortionPageNumber = (portionNumber -1) * portionSize + 1
+    let [portionNumber, setPortionNumber] = useState(1)
+    let portionCount = Math.ceil(pageCount / portionSize)
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
     const onSetCurrentPageHandler = (currentPage: number) => {
         dispatch(setCurrentPageAC(currentPage))
         dispatch(getUsersThunk(currentPage, pageSize))
     }
-    const pagesOptions = [5, 10,pageCount]
+    const pagesOptions = [5, 10]
     const pagesOptionsTags = pagesOptions.map(item => <option value={item} key={item}>{item}</option>)
 
     const pagesCountPacksChange = (pageCount: number) => {
@@ -42,31 +42,6 @@ export const Paginator = () => {
     const onPagesCountChangeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         pagesCountPacksChange(+event.currentTarget.value)
     }
-    // return (
-    //     <div>
-    //         {portionNumber > 1 &&
-    //             <button className={s.paginatorBtn}  onClick={()=>{setPortionNumber(portionNumber-1)}}>Previous</button>}
-    //         {pages.filter(p=>p>=leftPortionPageNumber && p<=rightPortionPageNumber)
-    //             .map(m => <span className={currentPage === m ? s.activePage : ''}
-    //                             onClick={() => onSetCurrentPageHandler(m)}>{m}</span>)}
-    //         {portionCount > portionNumber &&
-    //             <button onClick={()=>{setPortionNumber(portionNumber+1)}}>Next</button>
-    //         }
-    //
-    //         <div className={s.selectWrapper}>
-    //             Show
-    //             <select name="pagesCountSelect"
-    //                     id="pagesCountSelect"
-    //                     value={portionSize}
-    //                     onChange={onPagesCountChangeHandler}>
-    //                 {pagesOptionsTags}
-    //             </select>
-    //             Cards per page
-    //         </div>
-    //
-    //     </div>
-    //
-    // )
     return (
         <div className={s.paginator}>
             <div className={s.paginatorContainer}>
@@ -83,7 +58,7 @@ export const Paginator = () => {
                             pages
                                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                                 .map((p, i) => {
-                                    debugger
+
                                     return <div className={`${s.pageNumber} ${pageCount === p ? s.selectedPage : ''}`}
                                                 key={i}
                                                 onClick={() => onSetCurrentPageHandler(p)}> {p}</div>
